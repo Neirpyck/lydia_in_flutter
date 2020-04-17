@@ -17,7 +17,9 @@ class _HomePageState extends State<HomePage> {
 
   updateMontant(String val) {
     setState(() {
-      if (montant.contains('.') && montant.length < 8) {
+      if (montant.contains('.') &&
+          montant.substring(montant.indexOf('.') + 1, montant.length).length <
+              2) {
         montant += val;
       }
       if (montant.length < 5 && !montant.contains('.')) {
@@ -31,15 +33,15 @@ class _HomePageState extends State<HomePage> {
 
   removeLastChar() {
     setState(() {
-              print(montant.length);
-
-      if (montant[montant.length - 2] == '.') {
-        montant = montant.substring(0, montant.length - 2);
-      } else if (montant.length > 1) {
-          montant = montant.substring(0, montant.length - 1);
+    if(montant.length > 1){
+      if(montant[montant.length -2] == '.'){
+        montant = montant.substring(0,montant.length - 2);
       }else{
-        montant = '';
+        montant = montant.substring(0,montant.length - 1);
       }
+    }else{
+      montant = '';
+    }
     });
   }
 
